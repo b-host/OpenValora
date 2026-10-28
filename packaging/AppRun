@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# OpenValora - Universal AppRun Wrapper
+# Garante compatibilidade universal com qualquer distribuição Linux (Fedora, Silverblue, Bluefin, Ubuntu, Debian, Arch, openSUSE, etc.)
+# e com qualquer compositor (Wayland nativo, XWayland e X11).
+
+set -e
+
+# Determina o diretório base do AppImage
+if [ -z "${APPDIR}" ]; then
+    APPDIR="$(dirname "$(readlink -f "${0}")")"
+fi
+
+export APPDIR
+export PATH="${APPDIR}/usr/bin:${PATH}"
+
+# Configuração genérica de bibliotecas (independente de distribuição)
+# Suporta /usr/lib64 (Fedora/RHEL/openSUSE), /usr/lib/x86_64-linux-gnu (Debian/Ubuntu) e /usr/lib (Arch)
+export LD_LIBRARY_PATH="${APPDIR}/usr/lib:${APPDIR}/usr/lib64:${APPDIR}/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
+export XDG_DATA_DIRS="${APPDIR}/usr/share:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+# 1. Configurações de estabilidade para WebKitGTK em qualquer GPU (NVIDIA, Intel, AMD Mesa)
+# Evita que o WebKitGTK quebre no Wayland com drivers NVIDIA através do renderizador DMABuf
+export WEBKIT_DISABLE_DMABUF_RENDERER=1
+
+# Evita que o sandbox bwrap do WebKit falhe em sistemas imutáveis/OSTree (Fedora Silverblue, Bluefin) ou containers
+export WEBKIT_FORCE_SANDBOX=0
+export WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS=1
+
+# 2. Configuração de display resiliente (Wayland e X11)
+if [ -n "${WAYLAND_DISPLAY}" ] || [ "${XDG_SESSION_TYPE}" = "wayland" ]; then
+    # Habilita suporte nativo a Wayland com fallback transparente para X11/XWayland
+    export GDK_BACKEND="wayland,x11"
+    export QT_QPA_PLATFORM="wayland;xcb"
+    export MOZ_ENABLE_WAYLAND=1
+else
+    export GDK_BACKEND="x11"
+    export QT_QPA_PLATFORM="xcb"
+fi
+
+# 3. Execução do binário OpenValora
+if [ -f "${APPDIR}/usr/bin/openvalora" ]; then
+    exec "${APPDIR}/usr/bin/openvalora" "$@"
+elif [ -f "${APPDIR}/openvalora" ]; then
+    exec "${APPDIR}/openvalora" "$@"
+elif [ -f "${APPDIR}/usr/bin/valoraopen" ]; then
+    exec "${APPDIR}/usr/bin/valoraopen" "$@"
+elif [ -f "${APPDIR}/valoraopen" ]; then
+    exec "${APPDIR}/valoraopen" "$@"
+else
+    echo "Erro: Executável openvalora não encontrado em ${APPDIR}" >&2
+    exit 1
+fi

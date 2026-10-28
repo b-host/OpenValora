@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=OpenValora
+GenericName=Software de Engenharia de Avaliações
+Comment=Inferência Estatística, Regressão Linear Múltipla e Redes Neurais (ABNT NBR 14653)
+Exec=openvalora %U
+Icon=OpenValora
+Terminal=false
+Categories=Engineering;Office;Science;
+StartupNotify=true
+StartupWMClass=openvalora
+MimeType=application/vnd.ms-excel;
+X-AppImage-Version=0.1.0

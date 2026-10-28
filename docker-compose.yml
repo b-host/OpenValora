@@ -1,0 +1,15 @@
+services:
+  openvalora:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openvalora
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      # Opcional: monta pasta local para salvar modelos criados
+      - ./sample_data:/app/sample_data

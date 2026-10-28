@@ -1,0 +1,272 @@
+name: Build & Release OpenValora
+
+# Dispara automaticamente a cada commit nas branches master/main, ao criar uma tag v* ou manualmente via workflow_dispatch
+on:
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  # ============================================================
+  # 1. BUILD LINUX APPIMAGE (Compatível com Wayland e X11)
+  # ============================================================
+  build-linux:
+    name: Build Linux AppImage (x86_64)
+    # Ubuntu 22.04 (glibc 2.35) garante máxima compatibilidade com distros modernas
+    # (Debian 12+, Ubuntu 22.04+, Fedora 36+, Arch Linux, Pop!_OS, openSUSE, etc.)
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar Dependências do Sistema
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfuse2 file curl desktop-file-utils imagemagick libwebkit2gtk-4.1-dev libgirepository1.0-dev python3-gi gir1.2-webkit2-4.1 gir1.2-gtk-3.0
+
+      - name: Instalar Dependências Python e PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Compilar Binário Standalone com PyInstaller
+        run: |
+          pyinstaller --clean --noconfirm openvalora.spec
+
+      - name: Baixar appimagetool Oficial
+        run: |
+          curl -sSL -o appimagetool-x86_64.AppImage \
+            https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+
+      - name: Montar Estrutura OpenValora.AppDir
+        run: |
+          APPDIR="build/OpenValora.AppDir"
+          rm -rf "${APPDIR}"
+          mkdir -p "${APPDIR}/usr/bin"
+          mkdir -p "${APPDIR}/usr/share/applications"
+          mkdir -p "${APPDIR}/usr/share/icons/hicolor/256x256/apps"
+          mkdir -p "${APPDIR}/usr/share/icons/hicolor/512x512/apps"
+          mkdir -p "${APPDIR}/usr/share/pixmaps"
+
+          cp dist/openvalora "${APPDIR}/usr/bin/openvalora"
+          chmod +x "${APPDIR}/usr/bin/openvalora"
+
+          cp packaging/AppRun "${APPDIR}/AppRun"
+          chmod +x "${APPDIR}/AppRun"
+
+          cp packaging/openvalora.desktop "${APPDIR}/openvalora.desktop"
+          cp packaging/openvalora.desktop "${APPDIR}/OpenValora.desktop"
+          cp packaging/openvalora.desktop "${APPDIR}/usr/share/applications/openvalora.desktop"
+          cp packaging/openvalora.desktop "${APPDIR}/usr/share/applications/OpenValora.desktop"
+
+          cp OpenValora.png "${APPDIR}/OpenValora.png"
+          cp OpenValora.png "${APPDIR}/openvalora.png"
+          cp OpenValora.png "${APPDIR}/.DirIcon"
+
+          cp packaging/openvalora.png "${APPDIR}/usr/share/icons/hicolor/256x256/apps/openvalora.png"
+          cp packaging/openvalora.png "${APPDIR}/usr/share/icons/hicolor/256x256/apps/OpenValora.png"
+          cp packaging/openvalora-512.png "${APPDIR}/usr/share/icons/hicolor/512x512/apps/openvalora.png"
+          cp packaging/openvalora-512.png "${APPDIR}/usr/share/icons/hicolor/512x512/apps/OpenValora.png"
+
+          cp packaging/openvalora.png "${APPDIR}/usr/share/pixmaps/openvalora.png"
+          cp packaging/openvalora.png "${APPDIR}/usr/share/pixmaps/OpenValora.png"
+
+      - name: Gerar AppImage
+        run: |
+          VERSION=$(python -c "for line in open('app/main.py'): (print(line.split('=')[1].strip(' \"\'\n')) or exit()) if line.startswith('__version__') else None")
+          VERSION=${VERSION:-0.1.0}
+          export ARCH=x86_64
+          ./appimagetool-x86_64.AppImage --appimage-extract-and-run build/OpenValora.AppDir "dist/OpenValora-${VERSION}-Linux-x86_64.AppImage"
+          cp "dist/OpenValora-${VERSION}-Linux-x86_64.AppImage" dist/OpenValora-Linux-x86_64.AppImage
+          chmod +x dist/*.AppImage
+
+      - name: Upload do Artefato Linux
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenValora-Linux
+          path: dist/OpenValora-*.AppImage
+          if-no-files-found: error
+
+  # ============================================================
+  # 2. BUILD WINDOWS (Portátil x64 .zip)
+  # ============================================================
+  build-windows:
+    name: Build Windows Portátil (x64)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar Dependências Python e PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Compilar Binário com PyInstaller
+        run: |
+          pyinstaller --clean --noconfirm openvalora.spec
+
+      - name: Compactar Pacote Portátil Windows (.zip)
+        run: |
+          python packaging/bundle_zip.py
+
+      - name: Upload do Artefato Windows
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenValora-Windows
+          path: dist/OpenValora-*.zip
+          if-no-files-found: error
+
+  # ============================================================
+  # 3. BUILD MACOS (Universal x64 & ARM64 Apple Silicon)
+  # ============================================================
+  build-macos:
+    name: Build macOS (x64 / ARM64)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Instalar Dependências Python e PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyobjc pyobjc-framework-WebKit pyinstaller pillow
+
+      - name: Gerar Ícone ICNS do macOS
+        run: |
+          python -c "from PIL import Image; img = Image.open('OpenValora.png'); img.save('packaging/openvalora.icns', format='ICNS')"
+
+      - name: Compilar com PyInstaller
+        run: |
+          pyinstaller --clean --noconfirm openvalora.spec
+
+      - name: Compactar Pacote macOS (.zip)
+        run: |
+          VERSION=$(python3 -c "for line in open('app/main.py'): (print(line.split('=')[1].strip(' \"\'\n')) or exit()) if line.startswith('__version__') else None")
+          VERSION=${VERSION:-0.1.0}
+          cd dist
+          if [ -d "OpenValora.app" ]; then
+            zip -r "OpenValora-${VERSION}-macOS.zip" OpenValora.app
+            cp "OpenValora-${VERSION}-macOS.zip" OpenValora-macOS.zip
+          else
+            chmod +x openvalora
+            zip -r "OpenValora-${VERSION}-macOS.zip" openvalora
+            cp "OpenValora-${VERSION}-macOS.zip" OpenValora-macOS.zip
+          fi
+
+      - name: Upload do Artefato macOS
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenValora-macOS
+          path: dist/OpenValora-*.zip
+          if-no-files-found: error
+
+  # ============================================================
+  # 4. PUBLICAR RELEASE NO GITHUB (Automatizado por Commit ou Tag)
+  # ============================================================
+  release:
+    name: Publicar Release
+    needs: [build-linux, build-windows, build-macos]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Criar Diretório de Distribuição
+        run: mkdir -p release_assets
+
+      - name: Baixar Artefato Linux
+        uses: actions/download-artifact@v4
+        with:
+          name: OpenValora-Linux
+          path: release_assets/
+
+      - name: Baixar Artefato Windows
+        uses: actions/download-artifact@v4
+        with:
+          name: OpenValora-Windows
+          path: release_assets/
+
+      - name: Baixar Artefato macOS
+        uses: actions/download-artifact@v4
+        with:
+          name: OpenValora-macOS
+          path: release_assets/
+
+      - name: Listar Arquivos do Release
+        run: ls -la release_assets/
+
+      - name: Publicar Release no GitHub
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'v0.1.0' }}
+          name: ${{ github.ref_type == 'tag' && github.ref_name || 'OpenValora v0.1.0' }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          files: |
+            release_assets/OpenValora-*.AppImage
+            release_assets/OpenValora-*.zip
+            release_assets/**/OpenValora-*.AppImage
+            release_assets/**/OpenValora-*.zip
+          body: |
+            ## OpenValora - Software Livre de Engenharia de Avaliações
+            
+            Software 100% aberto, multiplataforma, moderno e completo para Engenharia de Avaliações, Inferência Estatística e Redes Neurais em estrita conformidade com as normas brasileiras da ABNT.
+
+            ### 📐 Normas Técnicas Atendidas:
+            - **ABNT NBR 14653-1 (Procedimentos Gerais)**: Princípios fundamentais, métodos de avaliação e conceitos regulamentares.
+            - **ABNT NBR 14653-2 (Imóveis Urbanos)**: Método Comparativo Direto de Dados de Mercado (MCDDM), Tabela 1 (Graus de Fundamentação), Tabela 2 (Graus de Precisão), Intervalo de Confiança a 80%, Campo de Arbítrio ($\pm 15\%$), Arredondamentos Normativos (1%) e salvaguarda contra inversão física/econômica de sinal.
+            - **ABNT NBR 14653-3 (Imóveis Rurais)**: Modelagem comparativa de glebas, terras e benfeitorias.
+            - **ABNT NBR 14653-4 (Empreendimentos)**: Análise analítica de sensibilidade e absorção de mercado.
+
+            ### 📂 Formatos de Arquivo:
+            - **Formato Nativo Aberto (.valora)**: Padrão aberto em JSON/UTF-8 completo, auditável e interoperável.
+            - **Compatibilidade Legada (.sda)**: Leitura e escrita perfeita de arquivos legados de engenharia de avaliações (BIFF8/OLE).
+            - **Planilhas**: Importação e exportação de dados em Microsoft Excel (.xlsx) e CSV com preservação de acentos.
+
+            ### 🚀 Recursos e Funcionalidades:
+            - **Multiplataforma Nativo**: Executáveis nativos para Linux (AppImage Universal), Windows e macOS.
+            - **100% Offline e Local**: Roda na máquina do usuário, sem telemetria, sem rastreamento ou dependência de nuvem.
+            - **Regressão Linear Múltipla com 7 Transformações**: $x$, $1/x$, $\ln x$, $x^2$, $1/x^2$, $\sqrt{x}$, $1/\sqrt{x}$.
+            - **Redes Neurais Artificiais (RNA)**: Módulo MLPRegressor com quasi-Newton (L-BFGS) e Adam, ativação logística e bagging.
+            - **Diagnóstico Rigoroso**: Tabela ANOVA, Teste $t$ de Student, Durbin-Watson, Kolmogorov-Smirnov, Shapiro-Wilk, Breusch-Pagan, Distância de Cook e VIF.
+            - **Emissão Automática de Laudo de Avaliação NBR**: Documento técnico pronto para impressão e assinatura digital.
+            
+            ### 📦 Downloads Disponíveis:
+            - **Linux**: `OpenValora-0.1.0-Linux-x86_64.AppImage` (AppImage Universal x86_64 compatível com Wayland e X11).
+            - **Windows**: `OpenValora-0.1.0-Windows-x64.zip` (pacote portátil para Windows 10/11 64-bit).
+            - **macOS**: `OpenValora-0.1.0-macOS.zip` (pacote para macOS Apple Silicon e Intel).

@@ -1,0 +1,3726 @@
+{
+  "Avaliação": [
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Area privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Area cobertura",
+      "descricao": "Area da cobertura privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Area de garagem",
+      "descricao": "Area privativa das garagens vinculadas à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Padrão construtivo",
+      "descricao": "Padrão construtivo do imóvel tendo como base os códigos alocados listados a seguir: 1 - Baixo, 2 - Normal, 3 - Alto",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Padrão construtivo - CUB",
+      "descricao": "Padrão de construção do imóvel tendo como base para a escala o CUB (Custo Unitário Basico)",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Estado de conservação",
+      "descricao": "Estado de conservação do imóvel (escala construída com base nos códigos alocados listados a seguir: 1 - Reparos Simples,  2 - Bom, 3 - Novo)",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Estado de conservação - Hoss Heideck",
+      "descricao": "Estado de conservação considerando os coeficientes de depreciação física",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Setor Urbano",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Indice Fiscal",
+      "descricao": "Variável de macrolocalização construída com base nos indices fiscais da PGV do município",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Macrolocalização",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Microlocalização",
+      "descricao": "Variável de microlocalização",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Latitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Longitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Distancia ao polo valorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo valorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Distância ao polo desvalorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo desvalorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Idade aparente",
+      "descricao": "Idade que o imóvel aparente considerando o padrão construtivo, a idade real e o estado de conservação",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Idade real",
+      "descricao": "Idade real do imóvel",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Dormitórios",
+      "descricao": "Quantidade de dormitórios da unidade, incluindo o número de dormitórios",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Suítes",
+      "descricao": "Quantidade de suítes e semi-suítes",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "DCW",
+      "descricao": "Dependencia completa de empregada",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Quarto de serviço",
+      "descricao": "Quarto de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Banho de serviço",
+      "descricao": "Banho na Area de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Varandas",
+      "descricao": "Quantidade de varandas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de garagem",
+      "descricao": "Total de vagas de garagem incluindo as cobertas e descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de garagem coberta",
+      "descricao": "Total de vagas de garagem incluindo as cobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de garagem descoberta",
+      "descricao": "Total de vagas de garagem incluindo as descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de garagem presas",
+      "descricao": "Total de vagas de garagem incluindo as cobertas presas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de garagem livres",
+      "descricao": "Total de vagas de garagem incluindo as cobertas livres",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vagas de estacionamento",
+      "descricao": "Total de vagas de estacionamento por unidade",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vista para o mar",
+      "descricao": "Vista para o mar (Se possui = 1, Não possui = 0)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Vista panorâmica",
+      "descricao": "Vista panorâmica do imóvel",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Data do evento",
+      "descricao": "Data de ocorrencia do evento (oferta ou transação) no mercado imobiliario",
+      "tipo": 3,
+      "classificacao": 3,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Data do evento - (agrupamento de dados de corte)",
+      "descricao": "Períodos de coleta de dados de mercado",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Endereço na internet",
+      "descricao": "Endereço ou sitio da internet",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Nome do logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tipo de logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tratamento do logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel esta localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda - 0, Oferta - 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total / Area total (m²)",
+      "tipo": 4,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 4,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Area privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Area cobertura",
+      "descricao": "Area da cobertura privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Area de garagem",
+      "descricao": "Area privativa das garagens vinculadas à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Padrão construtivo",
+      "descricao": "Padrão construtivo do imóvel construída com base nos códigos alocados listados a seguir: 1 - Baixo, 2 - Normal, 3 - Alto",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Padrão construtivo - CUB",
+      "descricao": "Padrão construtivo do imóvel construída com base no CUB (Custo UnitArio BAsico)",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Estado de conservação",
+      "descricao": "Estado de conservação do imóvel com a escala construída tendo como base os códigos alocados listados a seguir: 1 - Reparos Simples,  2 - Bom, 3 - Novo",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Estado de conservação - Hoss Heideck",
+      "descricao": "Estado de conservação considerando os coeficientes de depreciação física",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Setor urbano",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Indice fiscal",
+      "descricao": "Variável de macrolocalização construída com base nos indices fiscais da PGV do município",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Macrolocalização",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Microlocalização",
+      "descricao": "Variável de microlocalização",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Latitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Longitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Distancia ao polo valorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo valorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Distância ao polo desvalorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo desvalorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Idade aparente",
+      "descricao": "Idade que o imóvel aparente considerando o padrão construtivo, a idade real e o estado de conservação",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Idade real",
+      "descricao": "Idade real do imóvel",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Dormitórios",
+      "descricao": "Quantidade de dormitórios da unidade, incluindo o número de dormitórios",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Suítes",
+      "descricao": "Quantidade de suítes e semi-suítes",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "DCW",
+      "descricao": "Dependencia completa de empregada",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Quarto de serviço",
+      "descricao": "Quarto de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Banho de serviço",
+      "descricao": "Banho na Area de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Varandas",
+      "descricao": "Quantidade de varandas da unidade",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de garagem",
+      "descricao": "Total de vagas de garagem incluindo as cobertas e descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de garagem coberta",
+      "descricao": "Total de vagas de garagem incluindo as cobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de garagem descoberta",
+      "descricao": "Total de vagas de garagem incluindo as descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de garagem presas",
+      "descricao": "Total de vagas de garagem incluindo as cobertas presas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de garagem livres",
+      "descricao": "Total de vagas de garagem incluindo as cobertas livres",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vagas de estacionamento",
+      "descricao": "Total de vagas de estacionamento por unidade",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vista para o mar",
+      "descricao": "Vista para o mar (Se possui = 1, Não possui = 0)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Vista panorâmica",
+      "descricao": "Vista panorâmica do imóvel",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Data do evento",
+      "descricao": "Data de ocorrencia do evento no mercado imobiliArio",
+      "tipo": 3,
+      "classificacao": 3,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Data do evento - períodos",
+      "descricao": "Períodos de coleta de dados de mercado",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 2
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 3
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Area privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 3
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Área total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Área privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Areá térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 4
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 4
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Área total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Área privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Área térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Área de térreo / total",
+      "descricao": "Percentual de área térrea em relação à área total da loja",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Endereço na internet",
+      "descricao": "Endereço ou sitio da internet",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Nome do logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Tipo de logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Tratamento do logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel se localizada",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 5
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda - 0, Oferta - 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Area de garagem",
+      "descricao": "Area privativa das garagens vinculadas à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Padrão construtivo",
+      "descricao": "Padrão construtivo do imóvel construída com a escala construída com base nos códigos alocados listados a seguir: 1 - Baixo, 2 - Normal, 3 - Alto",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Padrão construtivo - CUB",
+      "descricao": "Padrão construtivo do imóvel cm a escala construída com base no CUB (Custo Unitário Basico)",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Estado de conservação",
+      "descricao": "Estado de conservação do imóvel com a escala construída tendo como base os códigos alocados listados a seguir: 1 - Reparos Simples,  2 - Bom, 3 - Novo",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Estado de conservação - Hoss Heideck",
+      "descricao": "Estado de conservação considerando os coeficientes de depreciação física",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Setor Urbano",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Índice Fiscal",
+      "descricao": "Variável de macrolocalização construída com base nos indices fiscais da PGV do município",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Macro localização",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Micro localização",
+      "descricao": "Variável de microlocalização",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Latitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Longitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Distancia ao polo valorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo valorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Distância ao polo desvalorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo desvalorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Idade aparente",
+      "descricao": "Idade que o imóvel aparente considerando o padrão construtivo, a idade real e o estado de conservação",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Idade real",
+      "descricao": "Idade real do imóvel",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Estacionamentos para clientes",
+      "descricao": "Total de estacionamentos disponíveis para os clientes da loja",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Área equivalente",
+      "descricao": "Área equivalente de construção em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Área total (R$/m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 6
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 6
+    },
+    {
+      "nome": "Área total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 6
+    },
+    {
+      "nome": "Área privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 6
+    },
+    {
+      "nome": "Área térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 6
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 6
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 6
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (R$/m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 7
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 7
+    },
+    {
+      "nome": "Área total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 7
+    },
+    {
+      "nome": "Área privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 7
+    },
+    {
+      "nome": "Área térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 7
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 7
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 7
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 8
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Área total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Área privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Área edificável",
+      "descricao": "Area de utilização do terreno medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Coeficiente aproveitamento",
+      "descricao": "Coeficiente de aproveitamento definido pela lei de uso e ocupação",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Area construída",
+      "descricao": "Area da construção existente no local",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Esquina",
+      "descricao": "Lote de esquina, assumindo o valor 1, ou meio de quadra com o valor 0",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 8
+    },
+    {
+      "nome": "Setor Urbano",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Indice Fiscal",
+      "descricao": "Variável de macro localização construída com base nos índices fiscais da PGV do município",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Macro localização",
+      "descricao": "Variável de macro localização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Microlocalização",
+      "descricao": "Variável de micro localização",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Latitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Longitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Distancia ao polo valorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo valorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Distância ao polo desvalorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo desvalorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 8
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 8
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Endereço na internet",
+      "descricao": "Endereço ou sitio da internet",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Nome do logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Tipo de logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Tratamento do logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel se localizada",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 9
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 9
+    },
+    {
+      "nome": "Valor unitário (r$/ha)",
+      "descricao": "Valor total do imóvel dividido pela Area total (ha)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 9
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 9
+    },
+    {
+      "nome": "Area total da gleba",
+      "descricao": "Area total do imóvel medida em hectares",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 9
+    },
+    {
+      "nome": "Area privativa da sede",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 9
+    },
+    {
+      "nome": "Area térrea da sede",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 9
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (ha)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 10
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 10
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em há",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 10
+    },
+    {
+      "nome": "Area privativa da sede",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 10
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 10
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda = 0, Oferta = 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 0,
+      "distribuicao": 2,
+      "tipologia": 10
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 10
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela Area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 11
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 11
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 11
+    },
+    {
+      "nome": "Area privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 11
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 11
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda - 0, Oferta - 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel estA localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 11
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Complemento",
+      "descricao": "Complemento ao endereço do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Valor unitário",
+      "descricao": "Valor total do imóvel dividido pela area total (m²)",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Valor total",
+      "descricao": "Valor total do imóvel",
+      "tipo": 1,
+      "classificacao": 7,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Area total",
+      "descricao": "Area total do imóvel medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Area privativa",
+      "descricao": "Area privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Area térrea",
+      "descricao": "Area térrea externa à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Area cobertura",
+      "descricao": "Area da cobertura privativa da unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Area de garagem",
+      "descricao": "Area privativa das garagens vinculadas à unidade medida em m²",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Padrão construtivo",
+      "descricao": "Padrão construtivo do imóvel tendo como base os códigos alocados listados a seguir: 1 - Baixo, 2 - Normal, 3 - Alto",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Padrão construtivo - CUB",
+      "descricao": "Padrão de construção do imóvel tendo como base para a escala o CUB (Custo Unitário Basico)",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Estado de conservação",
+      "descricao": "Estado de conservação do imóvel (escala construída com base nos códigos alocados listados a seguir: 1 - Reparos Simples,  2 - Bom, 3 - Novo)",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Estado de conservação - Hoss Heideck",
+      "descricao": "Estado de conservação considerando os coeficientes de depreciação física",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Setor Urbano",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Indice Fiscal",
+      "descricao": "Variável de macrolocalização construída com base nos indices fiscais da PGV do município",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Macrolocalização",
+      "descricao": "Variável de macrolocalização",
+      "tipo": 1,
+      "classificacao": 3,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Microlocalização",
+      "descricao": "Variável de microlocalização",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Latitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Longitude",
+      "descricao": "Variável construída com base nas coordenadas em UTM",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 4,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Distancia ao polo valorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo valorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Distância ao polo desvalorizante",
+      "descricao": "Variável quantitativa indicativa da distancia ao polo desvalorizante mais próximo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Idade aparente",
+      "descricao": "Idade aparente do imóvel considerando o padrão construtivo, a idade real e o estado de conservação",
+      "tipo": 1,
+      "classificacao": 2,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Idade real",
+      "descricao": "Idade real do imóvel",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Dormitórios",
+      "descricao": "Quantidade de dormitórios da unidade, incluindo o número de dormitórios",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Suítes",
+      "descricao": "Quantidade de suítes e semi-suítes",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "DCW",
+      "descricao": "Dependencia completa de empregada",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Quarto de serviço",
+      "descricao": "Quarto de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Banho de serviço",
+      "descricao": "Banho na Area de serviço",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Varandas",
+      "descricao": "Quantidade de varandas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de garagem",
+      "descricao": "Total de vagas de garagem incluindo as cobertas e descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de garagem coberta",
+      "descricao": "Total de vagas de garagem incluindo as cobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de garagem descoberta",
+      "descricao": "Total de vagas de garagem incluindo as descobertas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de garagem presas",
+      "descricao": "Total de vagas de garagem incluindo as cobertas presas",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de garagem livres",
+      "descricao": "Total de vagas de garagem incluindo as cobertas livres",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vagas de estacionamento",
+      "descricao": "Total de vagas de estacionamento por unidade",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vista para o mar",
+      "descricao": "Vista para o mar (Se possui = 1, Não possui = 0)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Vista panorâmica",
+      "descricao": "Vista panorâmica do imóvel",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Data do evento",
+      "descricao": "Data de ocorrencia do evento (oferta ou transação) no mercado imobiliario",
+      "tipo": 3,
+      "classificacao": 3,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 12
+    },
+    {
+      "nome": "Data do evento - (agrupamento de dados de corte)",
+      "descricao": "Períodos de coleta de dados de mercado",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Informante",
+      "descricao": "Nome ou identificação do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Telefone do informante",
+      "descricao": "Telefone ou número de contato do informante",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Endereço na internet",
+      "descricao": "Endereço ou sitio da internet",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Descrição do imóvel",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Nome do logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Tipo de logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Tratamento do logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel esta localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 12
+    },
+    {
+      "nome": "Evento",
+      "descricao": "Tipo de negócio (Venda - 0, Oferta - 1)",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 12
+    },
+    {
+      "nome": "Elevador (1=Sim)",
+      "descricao": "Indica a presença ou ausência de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 1
+    },
+    {
+      "nome": "Elevador",
+      "descricao": "Quantidade de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Elevador (1=Sim)",
+      "descricao": "Indica a presença ou ausência de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 2
+    },
+    {
+      "nome": "Elevador",
+      "descricao": "Quantidade de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 2
+    },
+    {
+      "nome": "Elevador (1=Sim)",
+      "descricao": "Indica a presença ou ausência de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 3
+    },
+    {
+      "nome": "Elevador",
+      "descricao": "Quantidade de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 3
+    },
+    {
+      "nome": "Elevador (1=Sim)",
+      "descricao": "Indica a presença ou ausência de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 4
+    },
+    {
+      "nome": "Elevador",
+      "descricao": "Quantidade de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 4
+    },
+    {
+      "nome": "Elevador (1=Sim)",
+      "descricao": "Indica a presença ou ausência de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 4,
+      "decimais": 0,
+      "comprimento": 18,
+      "distribuicao": 2,
+      "tipologia": 5
+    },
+    {
+      "nome": "Elevador",
+      "descricao": "Quantidade de elevadores no prédio",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 5
+    }
+  ],
+  "Economia": [
+    {
+      "nome": "Salário",
+      "descricao": "Renda Média Familiar",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 2,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Idade",
+      "descricao": "Idade real",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 1,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Sexo",
+      "descricao": "Sexo",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 1,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Descrição do dado",
+      "descricao": "Divisão interna da unidade",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo do imóvel",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o imóvel se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde o imóvel está localizado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    }
+  ],
+  "Engenharia": [
+    {
+      "nome": "Temperatura",
+      "descricao": "Temperatura Ambiente",
+      "tipo": 1,
+      "classificacao": 1,
+      "decimais": 1,
+      "comprimento": 18,
+      "distribuicao": 1,
+      "tipologia": 1
+    },
+    {
+      "nome": "Descrição do dado",
+      "descricao": "Descrição do dados coletados",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Identificação do dado",
+      "descricao": "Campo de identificação e caracterização do dado",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Endereço",
+      "descricao": "Endereço completo",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Nome do Logradouro",
+      "descricao": "Nome do logradouro",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 40,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tipo de Logradouro",
+      "descricao": "Tipo de logradouro ( Rua, Av ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 15,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Tratamento do Logradouro",
+      "descricao": "Tratamento do logradouro (Dr, Engenheiro, ...)",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 10,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Bairro",
+      "descricao": "Bairro onde o dado se localiza",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 20,
+      "distribuicao": 0,
+      "tipologia": 1
+    },
+    {
+      "nome": "Município",
+      "descricao": "Município onde a informação foi coletada",
+      "tipo": 2,
+      "classificacao": 8,
+      "decimais": 0,
+      "comprimento": 30,
+      "distribuicao": 0,
+      "tipologia": 1
+    }
+  ],
+  "Medicina": [],
+  "Tipologias": [
+    {
+      "codigo": 1,
+      "nome": "Apartamentos",
+      "area": 1
+    },
+    {
+      "codigo": 2,
+      "nome": "Casas",
+      "area": 1
+    },
+    {
+      "codigo": 3,
+      "nome": "Casas Antigas",
+      "area": 1
+    },
+    {
+      "codigo": 4,
+      "nome": "Escritórios",
+      "area": 1
+    },
+    {
+      "codigo": 5,
+      "nome": "Lojas",
+      "area": 1
+    },
+    {
+      "codigo": 6,
+      "nome": "Vagas de Garagem",
+      "area": 1
+    },
+    {
+      "codigo": 7,
+      "nome": "Armazéns",
+      "area": 1
+    },
+    {
+      "codigo": 8,
+      "nome": "Lotes",
+      "area": 1
+    },
+    {
+      "codigo": 9,
+      "nome": "Glebas Urbanizáveis",
+      "area": 1
+    },
+    {
+      "codigo": 10,
+      "nome": "Imóveis Rurais",
+      "area": 1
+    },
+    {
+      "codigo": 11,
+      "nome": "Prédios",
+      "area": 1
+    },
+    {
+      "codigo": 12,
+      "nome": "Outras tipologias",
+      "area": 1
+    },
+    {
+      "codigo": 1,
+      "nome": "Geral",
+      "area": 2
+    },
+    {
+      "codigo": 1,
+      "nome": "Geral",
+      "area": 3
+    },
+    {
+      "codigo": 1,
+      "nome": "Geral",
+      "area": 4
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+build
+dist
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.DS_Store
+*.AppImage
+*.spec
