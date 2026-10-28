@@ -129,12 +129,17 @@ jobs:
           pyinstaller --clean --noconfirm openvalora.spec
 
       - name: Compactar Pacote Portátil Windows (.zip)
+<<<<<<< HEAD
         shell: pwsh
         run: |
           $ver = (python -c "for line in open('app/main.py'): (print(line.split('=')[1].strip(' \"\'' + [char]10)) or exit()) if line.startswith('__version__') else None").Trim()
           if (-not $ver) { $ver = "0.1.0" }
           Compress-Archive -Path dist\openvalora.exe -DestinationPath "dist\OpenValora-$ver-Windows-x64.zip" -Force
           Copy-Item "dist\OpenValora-$ver-Windows-x64.zip" -Destination "dist\OpenValora-Windows-x64.zip"
+=======
+        run: |
+          python packaging/bundle_zip.py
+>>>>>>> e156f18 (OpenValora Start)
 
       - name: Upload do Artefato Windows
         uses: actions/upload-artifact@v4
@@ -201,6 +206,11 @@ jobs:
     name: Publicar Release
     needs: [build-linux, build-windows, build-macos]
     runs-on: ubuntu-latest
+<<<<<<< HEAD
+=======
+    permissions:
+      contents: write
+>>>>>>> e156f18 (OpenValora Start)
     steps:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
@@ -234,6 +244,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+<<<<<<< HEAD
           tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'latest' }}
           name: ${{ github.ref_type == 'tag' && github.ref_name || 'OpenValora - Build Contínuo (Latest)' }}
           draft: false
@@ -241,6 +252,18 @@ jobs:
           files: |
             release_assets/OpenValora-*.AppImage
             release_assets/OpenValora-*.zip
+=======
+          tag_name: ${{ github.ref_type == 'tag' && github.ref_name || 'v0.1.0' }}
+          name: ${{ github.ref_type == 'tag' && github.ref_name || 'OpenValora v0.1.0' }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          files: |
+            release_assets/OpenValora-*.AppImage
+            release_assets/OpenValora-*.zip
+            release_assets/**/OpenValora-*.AppImage
+            release_assets/**/OpenValora-*.zip
+>>>>>>> e156f18 (OpenValora Start)
           body: |
             ## OpenValora - Software Livre de Engenharia de Avaliações
             
