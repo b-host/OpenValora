@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenValora - Avaliação de Imóveis & Inferência Estatística (NBR 14653)</title>
+    <link rel="icon" type="image/png" href="/static/favicon.png">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <!-- Chart.js local -->
+    <script src="/static/vendor/chart.umd.min.js"></script>
+    <!-- Lucide Icons local -->
+    <script src="/static/vendor/lucide.min.js"></script>
+    <!-- html2pdf local para exportação de relatórios -->
+    <script src="/static/vendor/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- Header Principal -->
+    <header class="app-header">
+        <div class="brand-section">
+            <img src="/static/img/logo.png" alt="OpenValora" style="width: 40px; height: 40px; border-radius: 8px; object-fit: contain; box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+            <div>
+                <div class="brand-title" id="header-project-name">OpenValora <span style="font-size: 11px; font-weight: normal; color: var(--text-muted); margin-left: 4px;">v0.1.0</span></div>
+                <div class="brand-subtitle">Software de Inferência Estatística e Avaliação de Imóveis (NBR 14653)</div>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <button class="btn btn-secondary btn-sm" id="btn-novo-modelo" title="Criar um novo modelo de avaliação com variáveis padronizadas">
+                <i data-lucide="file-plus" style="width:14px;height:14px;"></i> Novo
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-abrir-amostras" title="Carregar modelos reais de exemplo em formato .sda (Apartamentos, Casas, Lotes, etc.)">
+                <i data-lucide="folder" style="width:14px;height:14px;"></i> Exemplos .sda
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-upload-file" title="Abrir arquivo de projeto (.valora, .sda, .xlsx, .csv)">
+                <i data-lucide="upload" style="width:14px;height:14px;"></i> Abrir
+            </button>
+            <input type="file" id="input-file-upload" style="display: none;" accept=".valora,.json,.sda,.xlsx,.xls,.csv">
+            
+            <!-- Formato Aberto Nativo por Padrão (.valora) -->
+            <button class="btn btn-primary btn-sm" id="btn-export-valora" title="Salvar Projeto no Formato Aberto Nativo (.valora)">
+                <i data-lucide="save" style="width:14px;height:14px;"></i> Salvar (.valora)
+            </button>
+
+            <!-- Formatos de Compatibilidade -->
+            <button class="btn btn-secondary btn-sm" id="btn-export-sda" title="Exportar no Formato de Planilha Legada (.sda)">
+                <i data-lucide="download" style="width:14px;height:14px;"></i> .sda (Legado)
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-export-xlsx" title="Exportar Tabela de Dados no Formato Excel (.xlsx)">
+                <i data-lucide="sheet" style="width:14px;height:14px;"></i> Excel (.xlsx)
+            </button>
+
+            <button class="btn btn-secondary btn-sm" id="btn-calcular-reg" title="Executar busca combinatória e cálculo da regressão linear (MCDDM / NBR 14653)">
+                <i data-lucide="play" style="width:14px;height:14px;"></i> Calcular
+            </button>
+
+            <button class="btn btn-secondary btn-sm" id="btn-info-projeto" title="Sobre o OpenValora (Software Livre & Open Source)">
+                <i data-lucide="info" style="width:14px;height:14px;"></i> Sobre
+            </button>
+
+            <button class="btn btn-secondary btn-sm" id="btn-toggle-theme" title="Alternar Modo Escuro / Claro">
+                <i data-lucide="moon" style="width:14px;height:14px;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Barra de Abas -->
+    <nav class="nav-tabs">
+        <button class="nav-tab-btn" data-tab="projeto"><i data-lucide="settings" style="width:16px;height:16px;"></i> Projeto</button>
+        <button class="nav-tab-btn" data-tab="variaveis"><i data-lucide="sliders" style="width:16px;height:16px;"></i> Variáveis</button>
+        <button class="nav-tab-btn" data-tab="dados"><i data-lucide="table" style="width:16px;height:16px;"></i> Dados da Amostra</button>
+        <button class="nav-tab-btn" data-tab="exploratoria"><i data-lucide="bar-chart-2" style="width:16px;height:16px;"></i> Análise Exploratória</button>
+        <button class="nav-tab-btn active" data-tab="regressao"><i data-lucide="trending-up" style="width:16px;height:16px;"></i> Regressão Linear</button>
+        <button class="nav-tab-btn" data-tab="rna"><i data-lucide="cpu" style="width:16px;height:16px;"></i> Redes Neurais (RNA)</button>
+        <button class="nav-tab-btn" data-tab="projecao"><i data-lucide="home" style="width:16px;height:16px;"></i> Imóvel Avaliando</button>
+        <button class="nav-tab-btn" data-tab="laudo"><i data-lucide="file-text" style="width:16px;height:16px;"></i> Relatório</button>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+
+        <!-- ==================== ABA 1: PROJETO / PROPRIEDADES ==================== -->
+        <div id="tab-projeto" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title">
+                    <span>Propriedades do Modelo</span>
+                    <button class="btn btn-primary btn-sm" onclick="saveMetadata()"><i data-lucide="save" style="width:14px;height:14px;"></i> Salvar Propriedades</button>
+                </div>
+                <div class="grid-cols-2">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Nome de Referência do Modelo</label>
+                            <input type="text" id="meta-nome" class="form-control" title="Identificador ou título de referência do modelo para emissão de laudos">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Autor / Responsável Técnico</label>
+                            <input type="text" id="meta-autor" class="form-control" placeholder="Nome do Responsável" title="Nome completo do engenheiro, arquiteto ou perito responsável técnico">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Data de Criação</label>
+                            <input type="text" id="meta-data" class="form-control" title="Data de realização da vistoria ou fechamento da pesquisa de mercado">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label">Área de Concentração</label>
+                            <select id="meta-area" class="form-control" title="Área de concentração metodológica (padrão: Avaliação de Bens conforme NBR 14653)">
+                                <option value="1">1 - Avaliação de Bens</option>
+                                <option value="2">2 - Economia</option>
+                                <option value="3">3 - Engenharia</option>
+                                <option value="4">4 - Medicina</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipologia</label>
+                            <select id="meta-tipologia" class="form-control" title="Tipologia do imóvel objeto para seleção e enquadramento das variáveis">
+                                <option value="1">1 - Apartamentos</option>
+                                <option value="2">2 - Casas</option>
+                                <option value="3">3 - Escritórios / Salas</option>
+                                <option value="4">4 - Lojas</option>
+                                <option value="5">5 - Terrenos / Lotes</option>
+                                <option value="6">6 - Galpões</option>
+                                <option value="7">7 - Imóveis Rurais</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Descrição / Abrangência</label>
+                            <textarea id="meta-descricao" class="form-control" rows="3" title="Descrição técnica da abrangência espacial, temporal e particularidades da amostra"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ABA 2: VARIÁVEIS ==================== -->
+        <div id="tab-variaveis" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title">
+                    <span>Definição e Escalas das Variáveis do Modelo</span>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm" onclick="openCatalogModal()"><i data-lucide="book-open" style="width:14px;height:14px;"></i> Catálogo de Variáveis</button>
+                        <button class="btn btn-secondary btn-sm" onclick="addCustomVariable()"><i data-lucide="plus" style="width:14px;height:14px;"></i> Adicionar Variável</button>
+                        <button class="btn btn-primary btn-sm" onclick="saveVariables()"><i data-lucide="save" style="width:14px;height:14px;"></i> Salvar Alterações</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;" title="Número de ordem da variável">#</th>
+                                <th title="Nome curto de identificação da variável na equação matemática">Nome da Variável</th>
+                                <th style="width: 140px;" title="Natureza da escala: Quantitativa (números contínuos/discretos) ou Qualitativa/Dicotômica (códigos alocados ou proxies)">Tipo</th>
+                                <th style="width: 220px;" title="Classificação normatizada: 7 para Variável Dependente (Preço/Valor) ou 1 para Regressores Independentes">Classificação NBR 14653</th>
+                                <th style="width: 180px;" title="Sentido esperado da relação com o preço (Direto ou Inverso). Permite diagnosticar inversão de sinal físico/econômico">Crescimento / Sinal</th>
+                                <th style="width: 80px; text-align: center;" title="Marca se a variável dependente representa o valor unitário por metro quadrado (R$/m²)">Unitário</th>
+                                <th style="width: 80px; text-align: center;" title="Habilita ou desabilita esta variável do cálculo dos modelos">Ativa</th>
+                                <th style="width: 60px; text-align: center;" title="Excluir variável e sua coluna na amostra">Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-variaveis"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ABA 3: DADOS DA AMOSTRA ==================== -->
+        <div id="tab-dados" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title">
+                    <div>
+                        <span>Planilha de Dados de Mercado (Amostra)</span>
+                        <span id="lbl-amostra-count" style="font-size: 12px; font-weight: normal; color: var(--text-muted); margin-left: 10px;"></span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; color: var(--text-muted); user-select: none;" title="Ocultar variáveis desabilitadas para maximizar a largura das colunas ativas">
+                            <input type="checkbox" id="chk-apenas-ativas" onchange="toggleFilterActiveVars(this.checked)"> Apenas Variáveis Ativas
+                        </label>
+                        <button class="btn btn-secondary btn-sm" onclick="addDataRow()" title="Inserir uma nova linha de dado de mercado na amostra"><i data-lucide="plus" style="width:14px;height:14px;"></i> Inserir Linha</button>
+                        <button class="btn btn-primary btn-sm" onclick="saveData()" title="Salvar todas as alterações da planilha de dados"><i data-lucide="save" style="width:14px;height:14px;"></i> Salvar Dados</button>
+                    </div>
+                </div>
+                <div class="table-wrapper" style="max-height: calc(100vh - 220px); min-height: 400px;">
+                    <table class="data-table">
+                        <thead id="thead-dados"></thead>
+                        <tbody id="tbody-dados"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ABA 4: ANÁLISE EXPLORATÓRIA ==================== -->
+        <div id="tab-exploratoria" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title" style="flex-wrap: wrap; gap: 12px;">
+                    <span>Estatística Descritiva & Visualização de Dispersão</span>
+                    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label class="form-label" style="margin: 0; font-size: 13px;" for="select-exp-indep">
+                                <strong>Variável Explicativa (Eixo X):</strong>
+                            </label>
+                            <select id="select-exp-indep" class="form-control" style="width: auto; min-width: 170px;" onchange="updateExploratoryX(this.value)"></select>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <label class="form-label" style="margin: 0; font-size: 13px;" for="select-exp-dep">
+                                <strong style="color: var(--primary);">Variável Dependente (Eixo Y):</strong>
+                            </label>
+                            <select id="select-exp-dep" class="form-control" style="width: auto; min-width: 170px; font-weight: 600; color: var(--primary);" onchange="updateExploratoryY(this.value)"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-cols-4" style="margin-bottom: 20px;">
+                    <div class="stat-box" title="Quantidade total de dados amostrais válidos e ativos coletados">
+                        <div class="stat-lbl">Nº de Elementos (N)</div>
+                        <div class="stat-val" id="exp-n">-</div>
+                    </div>
+                    <div class="stat-box" title="Média aritmética dos valores observados na amostra">
+                        <div class="stat-lbl">Média Aritmética</div>
+                        <div class="stat-val" id="exp-media">-</div>
+                    </div>
+                    <div class="stat-box" title="Valor mediano central que divide a amostra ordenada em duas metades (50% superiores e inferiores)">
+                        <div class="stat-lbl">Mediana</div>
+                        <div class="stat-val" id="exp-mediana">-</div>
+                    </div>
+                    <div class="stat-box" title="Desvio padrão amostral: medida da dispersão dos pontos em torno da média">
+                        <div class="stat-lbl">Desvio Padrão (s)</div>
+                        <div class="stat-val" id="exp-desvio">-</div>
+                    </div>
+                </div>
+
+                <div class="grid-cols-3" style="margin-bottom: 20px;">
+                    <div class="stat-box" title="Coeficiente de variação percentual (Desvio Padrão / Média * 100). Valores < 30% indicam relativa homogeneidade">
+                        <div class="stat-lbl">Coef. de Variação (CV%)</div>
+                        <div class="stat-val" id="exp-cv">-</div>
+                    </div>
+                    <div class="stat-box" title="Menor valor numérico observado na amostra para esta variável">
+                        <div class="stat-lbl">Mínimo Observado</div>
+                        <div class="stat-val" id="exp-min">-</div>
+                    </div>
+                    <div class="stat-box" title="Maior valor numérico observado na amostra para esta variável">
+                        <div class="stat-lbl">Máximo Observado</div>
+                        <div class="stat-val" id="exp-max">-</div>
+                    </div>
+                </div>
+
+                <div class="grid-cols-2">
+                    <div class="card" style="margin: 0;">
+                        <div class="card-title">
+                            <span>Histograma de Frequências</span>
+                            <span id="lbl-hist-var" class="badge badge-g2" style="font-size: 11px;">-</span>
+                        </div>
+                        <div style="height: 280px;"><canvas id="chart-exp-hist"></canvas></div>
+                    </div>
+                    <div class="card" style="margin: 0;">
+                        <div class="card-title">
+                            <span id="lbl-scatter-title">Dispersão: Y vs X</span>
+                            <span id="lbl-scatter-corr" class="badge badge-g3" style="font-size: 11px;" title="Coeficiente de correlação linear de Pearson (r)">r = 0.0000</span>
+                        </div>
+                        <div style="height: 280px;"><canvas id="chart-exp-scatter"></canvas></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Matriz de Correlação Linear de Pearson</div>
+                <div id="correlation-matrix-container" class="table-wrapper"></div>
+            </div>
+        </div>
+
+        <!-- ==================== ABA 5: REGRESSÃO LINEAR ==================== -->
+        <div id="tab-regressao" class="tab-panel">
+            
+            <!-- Painel Expansível de Opções de Cálculo -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-title" style="cursor: pointer; margin-bottom: 0;" onclick="toggleCalculationOptions()">
+                    <span style="display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="sliders" style="width:16px;height:16px;"></i> Opções de Cálculo da Regressão Linear
+                    </span>
+                    <span id="opt-toggle-icon" style="font-size: 12px; color: var(--text-muted);">Configurar ▼</span>
+                </div>
+                <div id="panel-calculation-options" style="display: none; padding-top: 15px; margin-top: 15px; border-top: 1px solid var(--border);">
+                    <div class="grid-cols-3" style="margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label class="form-label">Método de Busca</label>
+                            <select id="opt-metodo" class="form-control" title="Varredura combinatória: Todas as Regressões Possíveis (geral) ou Stepwise (rápida)">
+                                <option value="todas">Todas as Regressões Possíveis (Geral)</option>
+                                <option value="simplificado">Simplificado (Stepwise / Busca Rápida)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Critério de Seleção dos Modelos</label>
+                            <select id="opt-selecao" class="form-control" title="Ordenação do ranking: Estimativa (Espaço Original do Preço em R$ - preconizado pela NBR 14653) ou Regressão (Espaço Linearizado)">
+                                <option value="estimativa">Estimativa (Espaço Original do Valor - NBR 14653)</option>
+                                <option value="regressao">Regressão (Espaço Transformado)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Método de Estimação dos Coeficientes</label>
+                            <select id="opt-estimador" class="form-control" title="Método matemático de otimização: Mínimos Quadrados Ordinários (OLS) ou Máxima Verossimilhança">
+                                <option value="mq">Mínimos Quadrados Ordinários (OLS)</option>
+                                <option value="mv">Máxima Verossimilhança</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label class="form-label">Transformações Matemáticas Permitidas</label>
+                        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 6px;">
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Direta: y = a + b*x">
+                                <input type="checkbox" id="transf-x" value="x" checked> Direta (x)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Inversa: y = a + b*(1/x)">
+                                <input type="checkbox" id="transf-inv" value="1/x" checked> Inversa (1/x)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Logarítmica: y = a + b*ln(x)">
+                                <input type="checkbox" id="transf-ln" value="ln(x)" checked> Logarítmica (ln x)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Quadrática: y = a + b*x²">
+                                <input type="checkbox" id="transf-x2" value="x2"> Quadrática (x²)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Inversa Quadrática: y = a + b*(1/x²)">
+                                <input type="checkbox" id="transf-inv2" value="1/x2"> Inversa Quadrática (1/x²)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Raiz Quadrada: y = a + b*√x">
+                                <input type="checkbox" id="transf-sqrt" value="x(1/2)"> Raiz Quadrada (√x)
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;" title="Transformação Inversa da Raiz: y = a + b*(1/√x)">
+                                <input type="checkbox" id="transf-invsqrt" value="1/x(1/2)"> Inversa da Raiz (1/√x)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid-cols-2" style="margin-bottom: 15px;">
+                        <div class="form-group">
+                            <label class="form-label">Nível de Confiança para o Intervalo de Confiança</label>
+                            <select id="opt-conf-level" class="form-control" title="Probabilidade para o intervalo de confiança em torno da estimativa pontual (80% é a exigência normativa da NBR 14653-2)">
+                                <option value="0.80">80% (Padrão NBR 14653-2)</option>
+                                <option value="0.90">90%</option>
+                                <option value="0.95">95%</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Limite Máximo de Modelos no Ranking</label>
+                            <input type="number" id="opt-limite" class="form-control" value="100" min="10" max="500" title="Quantidade máxima de modelos exibidos na tabela de ordenação">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm" onclick="saveCalculationOptions()"><i data-lucide="check" style="width:14px;height:14px;"></i> Aplicar Opções & Recalcular</button>
+                </div>
+            </div>
+
+            <!-- Cards de Destaque NBR 14653 e Equação -->
+            <div class="grid-cols-2" style="margin-bottom: 20px;">
+                <div class="card" style="margin: 0; background: linear-gradient(to right, var(--bg-card), var(--primary-light));">
+                    <div style="font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase;">Equação de Regressão Selecionada</div>
+                    <div id="eq-display" style="font-size: 15px; font-family: monospace; font-weight: bold; margin: 8px 0; color: var(--text-main);">
+                        Nenhum modelo calculado.
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted);" id="nbr-resumo-texto">
+                        Clique em "Calcular Regressão" para avaliar os modelos.
+                    </div>
+                </div>
+
+                <div class="card" style="margin: 0; display: flex; justify-content: space-around; align-items: center;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">FUNDAMENTAÇÃO NBR 14653</div>
+                        <div id="badge-fundamentacao" class="badge badge-g3" style="font-size: 16px; padding: 6px 14px; margin-top: 6px;" title="Grau de Fundamentação segundo Tabela 1 da NBR 14653-2">-</div>
+                    </div>
+                    <div style="border-left: 1px solid var(--border); height: 40px;"></div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 11px; font-weight: 700; color: var(--text-muted);">PRECISÃO DA ESTIMATIVA</div>
+                        <div id="badge-precisao" class="badge badge-g3" style="font-size: 16px; padding: 6px 14px; margin-top: 6px;" title="Grau de Precisão da estimativa pontual segundo Tabela 2 da NBR 14653-2">-</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Diagnósticos Técnicos & Sugestões de Ajuste NBR 14653 -->
+            <div id="card-diagnosticos-container" class="card" style="margin-bottom: 20px; display: none;">
+                <div class="card-title" style="margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i data-lucide="lightbulb" style="width:18px;height:18px; color: var(--warning);"></i>
+                        <span>Diagnóstico Técnico & Sugestões de Ajuste (NBR 14653)</span>
+                    </div>
+                    <span id="diagnosticos-count-badge" class="badge badge-g2">0 Orientações</span>
+                </div>
+                <div id="box-diagnosticos-list"></div>
+            </div>
+
+            <!-- Principais Estatísticas -->
+            <div class="grid-cols-4" style="margin-bottom: 20px;">
+                <div class="stat-box" title="Coeficiente de Correlação Múltipla (mede o grau de associação linear entre a variável dependente e os regressores; varia de 0 a 1)">
+                    <div class="stat-lbl">Correlação (R)</div>
+                    <div class="stat-val" id="stat-r">-</div>
+                </div>
+                <div class="stat-box" title="Coeficiente de Determinação (percentual da variação dos preços explicada pela regressão linear no espaço ajustado)">
+                    <div class="stat-lbl">Determinação (R²)</div>
+                    <div class="stat-val" id="stat-r2">-</div>
+                </div>
+                <div class="stat-box" title="Coeficiente de Determinação recalculado diretamente no espaço original da moeda (R$ ou R$/m²), sem viés de transformações">
+                    <div class="stat-lbl">R² no Espaço Original</div>
+                    <div class="stat-val" id="stat-r2-orig">-</div>
+                </div>
+                <div class="stat-box" title="Estatística F de Snedecor (ANOVA): testa a hipótese nula de que todos os coeficientes angulares são simultaneamente nulos">
+                    <div class="stat-lbl">F-Calculado (ANOVA)</div>
+                    <div class="stat-val" id="stat-f">-</div>
+                </div>
+            </div>
+
+            <div class="grid-cols-3" style="margin-bottom: 20px;">
+                <div class="stat-box" title="Nível de significância da regressão (p-valor do teste F). Na NBR 14653-2: ≤ 1% (Grau III), ≤ 2% (Grau II), ≤ 5% (Grau I)">
+                    <div class="stat-lbl">Significância de F (%)</div>
+                    <div class="stat-val" id="stat-sig-f">-</div>
+                </div>
+                <div class="stat-box" title="Desvio padrão dos resíduos da regressão: dispersão dos pontos observados em torno do modelo">
+                    <div class="stat-lbl">Erro Padrão da Regressão</div>
+                    <div class="stat-val" id="stat-se">-</div>
+                </div>
+                <div class="stat-box" title="Estatística de Durbin-Watson para autocorrelação dos resíduos. Valores próximos de 2.0 indicam independência residual ideal">
+                    <div class="stat-lbl">Durbin-Watson</div>
+                    <div class="stat-val" style="font-size: 16px;" id="stat-dw">-</div>
+                </div>
+            </div>
+
+            <!-- Regressores do Modelo -->
+            <div class="card">
+                <div class="card-title">Regressores do Modelo Ajustado (Teste t de Student)</div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th title="Nome da variável explicativa incluída nesta especificação">Variável Independente</th>
+                                <th style="text-align:center;" title="Transformação matemática aplicada à variável (x, ln, 1/x, etc.)">Transf.</th>
+                                <th style="text-align:right;" title="Valor numérico do coeficiente angular ou intercepto estimado na regressão">Coeficiente</th>
+                                <th style="text-align:right;" title="Incerteza padrão associada à estimativa do coeficiente">Erro Padrão</th>
+                                <th style="text-align:right;" title="Estatística t de Student calculada (razão Coeficiente / Erro Padrão)">t Calculado</th>
+                                <th style="text-align:right;" title="Significância bicaudal (p-valor). NBR 14653-2: ≤ 10% (Grau III), ≤ 20% (Grau II), ≤ 30% (Grau I)">Significância (%)</th>
+                                <th style="text-align:right;" title="Elasticidade média: sensibilidade percentual média no preço frente a 1% de variação nesta variável">Elasticidade</th>
+                                <th style="text-align:right;" title="Fator de Inflação da Variância (VIF): diagnóstico de multicolinearidade. VIF < 5: ideal; VIF > 10: colinearidade prejudicial">VIF</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-regressores"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Gráficos Estatísticos -->
+            <div class="grid-cols-2" style="margin-bottom: 20px;">
+                <div class="card" style="margin: 0;">
+                    <div class="card-title">Gráfico de Aderência (Observado x Estimado)</div>
+                    <div style="height: 300px;"><canvas id="chart-aderencia"></canvas></div>
+                </div>
+                <div class="card" style="margin: 0;">
+                    <div class="card-title">Resíduos vs Valores Estimados (Homocedasticidade)</div>
+                    <div style="height: 300px;"><canvas id="chart-residuos"></canvas></div>
+                </div>
+            </div>
+
+            <div class="grid-cols-2" style="margin-bottom: 20px;">
+                <div class="card" style="margin: 0;">
+                    <div class="card-title">Distância de Cook (Pontos Influenciantes)</div>
+                    <div style="height: 280px;"><canvas id="chart-cook"></canvas></div>
+                </div>
+                <div class="card" style="margin: 0;">
+                    <div class="card-title">Frequência dos Resíduos Padronizados</div>
+                    <div style="height: 280px;"><canvas id="chart-normalidade"></canvas></div>
+                </div>
+            </div>
+
+            <!-- Gráfico da Função Estimativa (Curva de Regressão por Variável) -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <span>Função Estimativa (Curva de Regressão por Variável)</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <label for="select-curva-regressor" style="font-size: 12px; font-weight: 500; color: var(--text-muted);">Visualizar Regressor:</label>
+                        <select id="select-curva-regressor" class="form-control" style="font-size: 12px; padding: 4px 10px; width: auto; font-weight: normal;" onchange="updateCurvaChart()" title="Selecione o regressor para visualizar a curva ajustada da função estimativa mantendo as demais variáveis na média amostral"></select>
+                    </div>
+                </div>
+                <div style="height: 320px;"><canvas id="chart-curva-estimativa"></canvas></div>
+                <div style="margin-top: 8px; font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
+                    <span>Curva estimada calculada mantendo as demais variáveis explicativas nas suas médias amostrais.</span>
+                    <span id="curva-status-badge"></span>
+                </div>
+            </div>
+
+            <!-- Tabela de Ranking de Modelos -->
+            <div class="card">
+                <div class="card-title">Ranking dos Modelos de Regressão Avaliados</div>
+                <div class="table-wrapper" style="max-height: 300px;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;" title="Identificador ordinal do modelo">#</th>
+                                <th style="text-align:right;" title="Coeficiente de Correlação Múltipla">R</th>
+                                <th style="text-align:right;" title="Coeficiente de Determinação percentual no espaço linearizado">R² (%)</th>
+                                <th style="text-align:right;" title="Coeficiente de Determinação percentual no espaço original do valor (NBR 14653)">R² Orig (%)</th>
+                                <th style="text-align:right;" title="Estatística F calculada da ANOVA">F-Calc</th>
+                                <th style="text-align:right;" title="Erro padrão da regressão">Erro Padrão</th>
+                                <th style="text-align:center;" title="Estatística de Durbin-Watson para independência residual">DW</th>
+                                <th style="text-align:center;" title="Detecção de inversão de sinal físico-econômico nos regressores">Sinal</th>
+                                <th style="text-align:center;" title="Grau de Fundamentação preliminar segundo Tabela 1 da NBR 14653-2">Fundamentação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-modelos-ranking"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Diagnóstico Detalhado de Resíduos -->
+            <div class="card">
+                <div class="card-title">Diagnóstico Individual dos Resíduos por Observação (Clique no dado para abrir na tabela)</div>
+                <div class="table-wrapper" style="max-height: 300px;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;" title="Número de identificação do dado amostral">#</th>
+                                <th style="text-align:right;" title="Preço observado coletado na pesquisa de mercado">Observado</th>
+                                <th style="text-align:right;" title="Preço estimado previsto pela equação ajustada">Estimado</th>
+                                <th style="text-align:right;" title="Resíduo ordinário: Observado - Estimado">Resíduo</th>
+                                <th style="text-align:right;" title="Resíduo percentual relativo em relação ao valor observado (|e| / y * 100)">Resíduo (%)</th>
+                                <th style="text-align:right;" title="Resíduo studentizado. Valores com módulo > 2 apontam potenciais outliers">Resíduo Studentizado</th>
+                                <th style="text-align:right;" title="Distância de Cook: medida da influência desta observação nos coeficientes. Valores > 1 indicam pontos de alavanca">Distância de Cook</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-residuos"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== ABA 6: REDES NEURAIS (RNA) ==================== -->
+        <div id="tab-rna" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title">Módulo de Redes Neurais Artificiais (OpenValora RNA)</div>
+                <div class="grid-cols-3" style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label class="form-label">Neurônios na Camada Oculta</label>
+                        <input type="number" id="rna-neurons" class="form-control" value="8" min="2" max="50" title="Quantidade de nós de processamento na camada interna da rede MLP">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Função de Ativação</label>
+                        <select id="rna-activation" class="form-control" title="Função de transferência não-linear dos neurônios">
+                            <option value="logistic">Logística / Sigmoide (Padrão NBR)</option>
+                            <option value="relu">ReLU (Rápida)</option>
+                            <option value="tanh">Tangente Hiperbólica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Algoritmo de Otimização</label>
+                        <select id="rna-solver" class="form-control" title="Algoritmo de ajuste dos pesos: L-BFGS (recomendado para amostras pequenas/médias) ou Adam">
+                            <option value="lbfgs">L-BFGS (Quasi-Newton / LM)</option>
+                            <option value="adam">Adam (Gradiente Estocástico)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid-cols-3" style="margin-bottom: 20px;">
+                    <div class="form-group">
+                        <label class="form-label">Máximo de Iterações / Épocas</label>
+                        <input type="number" id="rna-iter" class="form-control" value="1500" min="100" max="10000" title="Número máximo de ciclos de retropropagação do erro">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Taxa de Aprendizado Inicial</label>
+                        <input type="number" step="0.001" id="rna-lr" class="form-control" value="0.01" title="Tamanho do passo de ajuste dos pesos no gradiente descendente">
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 24px;">
+                        <input type="checkbox" id="rna-bagging" title="Agregação bootstrap para redução de variância e prevenção de sobreajuste (overfitting)">
+                        <label class="form-label" style="margin: 0; cursor: pointer;" for="rna-bagging" title="Agregação bootstrap para redução de variância e prevenção de sobreajuste (overfitting)">Ativar Bagging (Ensemble)</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="btn-treinar-rna" title="Iniciar o ciclo de treinamento da rede neural com os dados da amostra"><i data-lucide="play" style="width:14px;height:14px;"></i> Treinar Rede Neural</button>
+            </div>
+
+            <div class="grid-cols-5" style="margin-bottom: 20px;">
+                <div class="stat-box" title="Coeficiente de Determinação percentual obtido pelo modelo de redes neurais">
+                    <div class="stat-lbl">R² da Rede Neural</div>
+                    <div class="stat-val" id="rna-r2">-</div>
+                </div>
+                <div class="stat-box" title="Coeficiente de Correlação linear entre os valores reais e as previsões da RNA">
+                    <div class="stat-lbl">Correlação (R)</div>
+                    <div class="stat-val" id="rna-r">-</div>
+                </div>
+                <div class="stat-box" title="Raiz do Erro Quadrático Médio: magnitude média do erro de previsão na mesma unidade da dependente">
+                    <div class="stat-lbl">Raiz do Erro Médio (RMSE)</div>
+                    <div class="stat-val" id="rna-rmse">-</div>
+                </div>
+                <div class="stat-box" title="Erro Percentual Absoluto Médio (|y - y_hat| / y * 100)">
+                    <div class="stat-lbl">Erro Percentual Médio (MAPE)</div>
+                    <div class="stat-val" id="rna-mape">-</div>
+                </div>
+                <div class="stat-box" title="Total de épocas de treinamento executadas até convergência">
+                    <div class="stat-lbl">Épocas Concluídas</div>
+                    <div class="stat-val" id="rna-iter-done">-</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Curva de Convergência do Treinamento</div>
+                <div style="height: 300px;"><canvas id="chart-rna-loss"></canvas></div>
+            </div>
+        </div>
+
+        <!-- ==================== ABA 7: IMÓVEL AVALIANDO ==================== -->
+        <div id="tab-projecao" class="tab-panel" style="display: none;">
+            
+            <div id="val-total-box" class="val-total-card" style="display: none;">
+                <div class="val-title">Valor Total Avaliado do Imóvel</div>
+                <div id="val-total-num" class="val-number">-</div>
+                <div class="val-sub">Calculado multiplicando o valor unitário arredondado pela área privativa/total vinculada.</div>
+            </div>
+
+            <div class="grid-cols-4" style="margin-bottom: 20px;">
+                <div class="stat-box" title="Preço unitário estimado pontualmente pelo modelo de regressão antes do arredondamento">
+                    <div class="stat-lbl">Valor Estimado Unitário</div>
+                    <div class="stat-val" id="val-unitario-est">-</div>
+                </div>
+                <div class="stat-box" title="Valor unitário final arredondado em até 1% conforme item 7.5 da ABNT NBR 14653-2">
+                    <div class="stat-lbl">Valor Unitário Arredondado (1%)</div>
+                    <div class="stat-val" id="val-unitario-arred">-</div>
+                </div>
+                <div class="stat-box" title="Intervalo estatístico de confiança a 80% em torno do valor estimado para o avaliando">
+                    <div class="stat-lbl">Intervalo de Confiança (80%)</div>
+                    <div class="stat-val" style="font-size: 15px;" id="val-ic-faixa">-</div>
+                </div>
+                <div class="stat-box" title="Amplitude percentual do IC a 80%: (Limite Superior - Limite Inferior) / Estimativa * 100">
+                    <div class="stat-lbl">Amplitude do IC</div>
+                    <div class="stat-val" id="val-ic-amp">-</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span>Atributos do Imóvel Avaliando</span>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-secondary btn-sm" onclick="addSubjectRow()" title="Adicionar um novo imóvel avaliando"><i data-lucide="plus" style="width:14px;height:14px;"></i> Novo Imóvel</button>
+                        <button class="btn btn-primary btn-sm" onclick="saveSubjects()" title="Salvar atributos e calcular estimativa pontual e intervalo de confiança"><i data-lucide="save" style="width:14px;height:14px;"></i> Salvar e Avaliar</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead id="thead-sujeito"></thead>
+                        <tbody id="tbody-sujeito"></tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 15px; font-size: 13px; color: var(--text-muted);">
+                    <strong title="Margem normativa de ±15% em torno da tendência central para ponderações de engenharia">Campo de Arbítrio (±15%):</strong> <span id="val-arbitrio">-</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== ABA 8: RELATÓRIO NBR 14653 ==================== -->
+        <div id="tab-laudo" class="tab-panel" style="display: none;">
+            <div class="card">
+                <div class="card-title">
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <span>Relatório de Avaliação Imobiliária (NBR 14653)</span>
+                        <select id="select-relatorio-modelo" class="form-control" style="font-size: 12px; padding: 4px 8px; width: auto; font-weight: normal;" title="Selecionar modelo calculado para emissão do relatório">
+                            <option value="0">Modelo Selecionado</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary btn-sm" id="btn-personalizar-relatorio" title="Personalizar cabeçalho, logotipo, partes e observações do relatório">
+                            <i data-lucide="sliders" style="width:14px;height:14px;"></i> Personalizar Relatório
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="btn-laudo-externo" title="Abrir relatório em página inteira em nova aba">
+                            <i data-lucide="external-link" style="width:14px;height:14px;"></i> Abrir em Nova Aba
+                        </button>
+                        <button class="btn btn-secondary btn-sm" id="btn-imprimir-relatorio" title="Imprimir documento ou salvar via diálogo de impressão do sistema">
+                            <i data-lucide="printer" style="width:14px;height:14px;"></i> Imprimir
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="btn-baixar-pdf" title="Gerar e baixar arquivo PDF completo formatado em A4">
+                            <i data-lucide="download" style="width:14px;height:14px;"></i> Baixar PDF
+                        </button>
+                    </div>
+                </div>
+                <iframe id="iframe-laudo" style="width: 100%; height: 750px; border: 1px solid var(--border); border-radius: var(--radius); background: white;"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modais -->
+
+    <!-- Modal Novo Modelo -->
+    <div id="modal-new" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <strong>Criar Novo Modelo OpenValora</strong>
+                <button onclick="closeModal('modal-new')" class="btn btn-secondary btn-sm">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Escolha a Tipologia do Imóvel</label>
+                    <select id="new-model-tipologia" class="form-control">
+                        <option value="Apartamentos">Apartamentos (Residenciais Urbanos)</option>
+                        <option value="Casas">Casas / Residências Unifamiliares</option>
+                        <option value="Lotes">Lotes e Terrenos Urbanos</option>
+                        <option value="Lojas">Lojas e Imóveis Comerciais</option>
+                        <option value="Galpões">Galpões Industriais e Logísticos</option>
+                        <option value="Imóveis Rurais">Imóveis Rurais e Glebas</option>
+                    </select>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted);">
+                    Ao criar o modelo, as variáveis típicas de avaliação com escalas e classificações recomendadas pela ABNT NBR 14653 serão configuradas automaticamente.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-new')">Cancelar</button>
+                <button class="btn btn-primary" onclick="createNewModelFromModal()">Criar Modelo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Exemplos .sda -->
+    <div id="modal-samples" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <strong>Modelos de Exemplo .sda (Compatíveis)</strong>
+                <button onclick="closeModal('modal-samples')" class="btn btn-secondary btn-sm">✕</button>
+            </div>
+            <div class="modal-body" id="modal-samples-list"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-samples')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Catálogo de Variáveis -->
+    <div id="modal-catalog" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog" style="max-width: 800px;">
+            <div class="modal-header">
+                <strong>Catálogo de Variáveis Padronizadas ABNT NBR 14653</strong>
+                <button onclick="closeModal('modal-catalog')" class="btn btn-secondary btn-sm">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="display: flex; gap: 8px;">
+                    <input type="text" id="catalog-search-input" class="form-control" placeholder="Pesquisar por nome ou atributo (ex: área, padrão, conservação, cub...)" oninput="searchCatalog()">
+                </div>
+                <div id="catalog-results-list" style="max-height: 400px; overflow-y: auto;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('modal-catalog')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sobre o OpenValora -->
+    <div id="modal-about" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog" style="max-width: 620px;">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="/static/img/logo.png" alt="OpenValora" style="width: 28px; height: 28px; border-radius: 6px;">
+                    <strong>Sobre o OpenValora</strong>
+                </div>
+                <button onclick="closeModal('modal-about')" class="btn btn-secondary btn-sm">✕</button>
+            </div>
+            <div class="modal-body" style="font-size: 13px; line-height: 1.6;">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <img src="/static/img/logo.png" alt="OpenValora" style="width: 72px; height: 72px; border-radius: 14px; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                    <h3 style="margin: 0; color: var(--primary);">OpenValora</h3>
+                    <div style="font-weight: 600; color: var(--text-muted); font-size: 12px; margin-top: 2px;">
+                        Versão 0.1.0 &bull; Software Livre & Código Aberto
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 12px 16px; margin-bottom: 14px; background: var(--bg-main); border-left: 4px solid var(--primary);">
+                    <p style="margin: 0; font-size: 13px;">
+                        O <strong>OpenValora</strong> é um software livre, moderno e 100% de código aberto para Engenharia de Avaliações, Inferência Estatística e Redes Neurais Artificiais, desenvolvido para atender rigorosamente à metodologia brasileira da <strong>ABNT NBR 14653</strong>.
+                    </p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+                    <div class="card" style="padding: 12px;">
+                        <strong style="color: var(--primary); display: flex; align-items: center; gap: 6px;"><i data-lucide="award" style="width:16px;height:16px;"></i> Normas ABNT</strong>
+                        <ul style="margin: 6px 0 0 16px; padding: 0; font-size: 12px; color: var(--text-main);">
+                            <li>NBR 14653-1 (Geral)</li>
+                            <li>NBR 14653-2 (Urbanos)</li>
+                            <li>NBR 14653-3 (Rurais)</li>
+                            <li>NBR 14653-4 (Empreend.)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="padding: 12px;">
+                        <strong style="color: var(--primary); display: flex; align-items: center; gap: 6px;"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> Liberdade & Licença</strong>
+                        <ul style="margin: 6px 0 0 16px; padding: 0; font-size: 12px; color: var(--text-main);">
+                            <li><strong>Licença MIT</strong> (Open Source)</li>
+                            <li>100% Offline e Local</li>
+                            <li>Zero Telemetria / Sem Rastreamento</li>
+                            <li>Uso Profissional e Comercial Livre</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 12px 14px; margin-bottom: 8px;">
+                    <strong style="color: var(--primary); display: flex; align-items: center; gap: 6px;"><i data-lucide="file-code" style="width:16px;height:16px;"></i> Formatos de Arquivo</strong>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: var(--text-main);">
+                        &bull; <strong>Formato Nativo Aberto (.valora):</strong> Formato padrão aberto baseado em JSON com codificação UTF-8, auditável, interoperável e livre de bloqueios proprietários.<br>
+                        &bull; <strong>Compatibilidade Legada (.sda):</strong> Leitura e gravação de arquivos de engenharia de avaliações em formato de planilha BIFF8 (.sda).<br>
+                        &bull; <strong>Planilhas:</strong> Importação e exportação em Microsoft Excel (<code>.xlsx</code>) e <code>.csv</code>.
+                    </p>
+                </div>
+
+                <div class="card" style="padding: 12px 14px; margin-bottom: 8px; background: var(--bg-main); border-left: 4px solid var(--primary);">
+                    <strong style="color: var(--primary); display: flex; align-items: center; gap: 6px;">
+                        <i data-lucide="award" style="width:16px;height:16px;"></i> Crédito
+                    </strong>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: var(--text-main);">
+                        Desenvolvimento e Autoria: <a href="https://github.com/b-host" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 600; text-decoration: underline;">https://github.com/b-host</a>
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; color: var(--text-muted);">&copy; 2026 OpenValora &bull; <a href="https://github.com/b-host" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: 600;">b-host</a> &bull; Licença MIT</span>
+                <button class="btn btn-primary btn-sm" onclick="closeModal('modal-about')">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Personalizar Relatório / Laudo -->
+    <div id="modal-report-customizer" class="modal-overlay" style="display: none;">
+        <div class="modal-dialog" style="max-width: 720px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <span class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="sliders" style="width:18px;height:18px; color: var(--primary);"></i>
+                    Personalizar Relatório (NBR 14653)
+                </span>
+                <button class="modal-close" onclick="closeModal('modal-report-customizer')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 16px 20px;">
+                <!-- Logomarca -->
+                <div class="card" style="padding: 12px 14px; margin-bottom: 14px; background: var(--bg-main);">
+                    <label class="form-label" style="font-weight: 600; margin-bottom: 6px;">Logomarca do Relatório (Empresa / Profissional)</label>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-top: 8px;">
+                        <div id="report-logo-preview-box" style="width: 140px; height: 60px; border: 1px dashed var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; background: white; overflow: hidden;">
+                            <span id="report-logo-placeholder" style="display: none; font-size: 11px; color: var(--text-muted);">Logo Padrão</span>
+                            <img id="report-logo-img" src="/static/img/logo.png" alt="Preview Logo" style="display: block; max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input-report-logo').click()">
+                                <i data-lucide="upload" style="width:14px;height:14px;"></i> Selecionar Imagem (PNG/JPG)
+                            </button>
+                            <input type="file" id="input-report-logo" accept="image/png,image/jpeg,image/svg+xml,image/webp" style="display: none;">
+                            <button class="btn btn-secondary btn-sm" id="btn-remover-logo" style="display: none; color: var(--danger);" onclick="removeReportLogo()">
+                                <i data-lucide="trash" style="width:14px;height:14px;"></i> Restaurar Logo Padrão
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Título e Subtítulo Centralizados -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label class="form-label" style="text-align: center;">Título do Relatório</label>
+                        <input type="text" id="rep-titulo" class="form-control" style="text-align: center; font-weight: 700;" placeholder="RELATÓRIO DE AVALIAÇÃO IMOBILIÁRIA">
+                    </div>
+                    <div>
+                        <label class="form-label" style="text-align: center;">Subtítulo Normativo</label>
+                        <input type="text" id="rep-subtitulo" class="form-control" style="text-align: center;" placeholder="Em conformidade com a ABNT NBR 14653-2 (Imóveis Urbanos)">
+                    </div>
+                </div>
+
+                <!-- Partes e Imóvel -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <div>
+                        <label class="form-label">Contratante / Solicitante</label>
+                        <input type="text" id="rep-solicitante" class="input" placeholder="Ex: Tribunal de Justiça / Banco / Particular">
+                    </div>
+                    <div>
+                        <label class="form-label">Finalidade da Avaliação</label>
+                        <input type="text" id="rep-finalidade" class="input" placeholder="Determinação de Valor de Mercado">
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 14px;">
+                    <label class="form-label">Endereço / Localização do Imóvel Avaliando</label>
+                    <input type="text" id="rep-endereco" class="input" placeholder="Ex: Rua das Flores, 120, Apto 402 - Bairro Central, São Paulo/SP">
+                </div>
+
+                <!-- Seção Profissional / Perito -->
+                <div class="card" style="padding: 12px 14px; margin-bottom: 14px; background: var(--bg-card); border-left: 3px solid var(--primary);">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                        <i data-lucide="user-check" style="width:15px;height:15px; color: var(--primary);"></i> Informações do Responsável Técnico (Assinatura)
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div>
+                            <label class="form-label">Nome do Avaliador / Perito</label>
+                            <input type="text" id="rep-autor" class="input" placeholder="Nome do Responsável">
+                        </div>
+                        <div>
+                            <label class="form-label">Qualificação Profissional</label>
+                            <input type="text" id="rep-qualificacao" class="input" placeholder="Ex: Engenheiro Civil - Avaliador e Perito">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label class="form-label">Registro Profissional (CREA / CAU)</label>
+                            <input type="text" id="rep-registro" class="input" placeholder="Ex: CREA-SP 123456/D">
+                        </div>
+                        <div>
+                            <label class="form-label">Registro Especialista (IBAPE / CNAI)</label>
+                            <input type="text" id="rep-ibape" class="input" placeholder="Ex: IBAPE/SP 0456 | CNAI 1234">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Empresa / Escritório (para Rodapé) -->
+                <div class="card" style="padding: 12px 14px; margin-bottom: 14px; background: var(--bg-card); border-left: 3px solid #0284c7;">
+                    <div style="font-size: 13px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+                        <i data-lucide="building" style="width:15px;height:15px; color: #0284c7;"></i> Informações da Empresa / Escritório (Rodapé Institucional)
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div>
+                            <label class="form-label">Nome da Empresa / Razão Social</label>
+                            <input type="text" id="rep-empresa-nome" class="input" placeholder="Ex: Silva & Associados Engenharia de Avaliações">
+                        </div>
+                        <div>
+                            <label class="form-label">CNPJ ou CPF</label>
+                            <input type="text" id="rep-empresa-cnpj" class="input" placeholder="Ex: 12.345.678/0001-90">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div>
+                            <label class="form-label">Registro Empresa CREA/CAU</label>
+                            <input type="text" id="rep-empresa-crea" class="input" placeholder="Ex: CREA-SP PJ-99887">
+                        </div>
+                        <div>
+                            <label class="form-label">Telefone / WhatsApp</label>
+                            <input type="text" id="rep-empresa-telefone" class="input" placeholder="Ex: (11) 98765-4321 / 3214-5500">
+                        </div>
+                        <div>
+                            <label class="form-label">E-mail Profissional</label>
+                            <input type="email" id="rep-empresa-email" class="input" placeholder="Ex: contato@silvaengenharia.com.br">
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label class="form-label">Website / Portal</label>
+                            <input type="text" id="rep-empresa-site" class="input" placeholder="Ex: www.silvaengenharia.com.br">
+                        </div>
+                        <div>
+                            <label class="form-label">Endereço Comercial / Sede</label>
+                            <input type="text" id="rep-empresa-endereco" class="input" placeholder="Ex: Av. Paulista, 1000, Cj. 101 - São Paulo/SP">
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 12px; width: 100%;">
+                    <label class="form-label">Observações Técnicas / Parecer Conclusivo (Opcional)</label>
+                    <textarea id="rep-observacoes" class="form-control" rows="4" style="width: 100%; min-width: 100%; max-width: 100%; box-sizing: border-box; resize: vertical; display: block;" placeholder="Insira considerações técnicas, notas de vistoria, ressalvas ou parecer final do perito..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 8px;">
+                <button class="btn btn-secondary btn-sm" onclick="closeModal('modal-report-customizer')">Cancelar</button>
+                <button class="btn btn-primary btn-sm" onclick="saveReportCustomizer()"><i data-lucide="check" style="width:14px;height:14px;"></i> Salvar e Atualizar Relatório</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts da Aplicação -->
+    <script src="/static/js/charts.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+env/
+venv/
+ENV/
+
+# PyInstaller / Build
+build/
+dist/
+*.spec.bak
+
+# Temp / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+nbr/
